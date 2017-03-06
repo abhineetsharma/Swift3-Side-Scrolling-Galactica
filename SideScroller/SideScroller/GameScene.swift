@@ -11,13 +11,17 @@ import SpriteKit
 class GameScene: SKScene {
 
     var ship :SKSpriteNode = SKSpriteNode()
-    var shipMoveUP:SKAction = SKAction()
+    var shipMoveUp:SKAction = SKAction()
     var shipMoveDown : SKAction = SKAction()
+    
+    
+    let backgroundVelocity :CGFloat = 3.0
     
     override func didMove(to view: SKView) {
         self.backgroundColor = .white
+        self.addBackGround()
         self.addShip()
-        
+        self.addBomb()
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         
         
@@ -33,37 +37,70 @@ class GameScene: SKScene {
         ship.name = "ship"
         ship.position = CGPoint(x: 120, y: 160)
         
-        shipMoveUP = SKAction.moveBy(x: 0, y: 30, duration: 0.2)
+        shipMoveUp = SKAction.moveBy(x: 0, y: 30, duration: 0.2)
         shipMoveDown = SKAction.moveBy(x: 0, y: -30, duration: 0.2)
         
         self.addChild(ship)
     }
     
     func addBackGround(){
+        for index in 0..<2
+        {
+            let bg:SKSpriteNode = SKSpriteNode(imageNamed: "back")
+            bg.position = CGPoint(x: index * Int(bg.size.width), y: 0)
+            bg.anchorPoint = CGPoint(x: 0, y: 0)
+            bg.name = "background"
+            
+            self.addChild(bg);
+        }
     
     }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        for touch: AnyObject in touches{
-            let location  = touch.location(in:self)
-            if location.y > ship.position.y
-            {
-                if ship.position.y < 300
-                {
+    
+    func moveBackground(){
+        self.enumerateChildNodes(withName: "background", using: {(node,stop)-> Void in
+            if let bg = node as? SKSpriteNode{
+                bg.position = CGPoint(x: bg.position.x - self.backgroundVelocity, y :bg.position.y)
                 
-                    ship.run(shipMoveUP)
+                if bg.position.x <= -bg.size.width{
+                    bg.position = CGPoint(x:bg.position.x + bg.size.width * 2, y : bg.position.y)
                 }
-                else
-                {
-                    if ship.position.y > 50
-                    {
-                        ship.run(shipMoveDown)
-                    }
+            }
+        })
+    }
+    
+    func addBomb() {
+        let bomb = SKSpriteNode(imageNamed: "bomb")
+        bomb.setScale(0.15)
+        bomb.physicsBody = SKPhysicsBody(rectangleOf: bomb.size)
+        bomb.physicsBody?.isDynamic = true;
+        bomb.name = "bomb"
+        
+        let random :CGFloat = CGFloat(arc4random_uniform(300))
+        
+        bomb.position = CGPoint(x: self.frame.size.width+20, y: random)
+        
+        self.addChild(bomb)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch: AnyObject in touches {
+            let location = touch.location(in: self)
+            if location.y > ship.position.y {
+                if ship.position.y < 300 {
+                    ship.run(shipMoveUp)
                 }
+            }else if ship.position.y > 50 {
+                    ship.run(shipMoveDown)
+                
             }
         }
     }
-        
+
+    override func update(_ currentTime: TimeInterval) {
+        self.moveBackground()
+    }
+    
+  
         
 }
     /*
