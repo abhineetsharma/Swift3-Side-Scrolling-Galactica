@@ -11,6 +11,8 @@ import SpriteKit
 class GameScene: SKScene {
 
     var ship :SKSpriteNode = SKSpriteNode()
+    var shipMoveUP:SKAction = SKAction()
+    var shipMoveDown : SKAction = SKAction()
     
     override func didMove(to view: SKView) {
         self.backgroundColor = .white
@@ -31,7 +33,35 @@ class GameScene: SKScene {
         ship.name = "ship"
         ship.position = CGPoint(x: 120, y: 160)
         
+        shipMoveUP = SKAction.moveBy(x: 0, y: 30, duration: 0.2)
+        shipMoveDown = SKAction.moveBy(x: 0, y: -30, duration: 0.2)
+        
         self.addChild(ship)
+    }
+    
+    func addBackGround(){
+    
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        for touch: AnyObject in touches{
+            let location  = touch.location(in:self)
+            if location.y > ship.position.y
+            {
+                if ship.position.y < 300
+                {
+                
+                    ship.run(shipMoveUP)
+                }
+                else
+                {
+                    if ship.position.y > 50
+                    {
+                        ship.run(shipMoveDown)
+                    }
+                }
+            }
+        }
     }
         
         
