@@ -16,6 +16,18 @@
 		C32235C41E6D50CF00B3F0BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C32235C31E6D50CF00B3F0BB /* Assets.xcassets */; };
 		C32235C71E6D50CF00B3F0BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C32235C51E6D50CF00B3F0BB /* LaunchScreen.storyboard */; };
 		C32235CF1E6E3BD100B3F0BB /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32235CE1E6E3BD100B3F0BB /* GameOverScene.swift */; };
+		C32235D11E6E5CCD00B3F0BB /* laser.sks in Resources */ = {isa = PBXBuildFile; fileRef = C32235D01E6E5CCD00B3F0BB /* laser.sks */; };
+		C32235D31E6E61BB00B3F0BB /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = C32235D21E6E61BB00B3F0BB /* Explosion.sks */; };
+		C32235DE1E6E635700B3F0BB /* music.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C32235D41E6E635700B3F0BB /* music.m4a */; };
+		C32235DF1E6E635700B3F0BB /* explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = C32235D51E6E635700B3F0BB /* explosion.wav */; };
+		C32235E01E6E635700B3F0BB /* laser.wav in Resources */ = {isa = PBXBuildFile; fileRef = C32235D61E6E635700B3F0BB /* laser.wav */; };
+		C32235E11E6E635700B3F0BB /* particle.png in Resources */ = {isa = PBXBuildFile; fileRef = C32235D71E6E635700B3F0BB /* particle.png */; };
+		C32235E21E6E635700B3F0BB /* item0.png in Resources */ = {isa = PBXBuildFile; fileRef = C32235D81E6E635700B3F0BB /* item0.png */; };
+		C32235E31E6E635700B3F0BB /* enemy_frame1.png in Resources */ = {isa = PBXBuildFile; fileRef = C32235D91E6E635700B3F0BB /* enemy_frame1.png */; };
+		C32235E41E6E635700B3F0BB /* player_frame1.png in Resources */ = {isa = PBXBuildFile; fileRef = C32235DA1E6E635700B3F0BB /* player_frame1.png */; };
+		C32235E51E6E635700B3F0BB /* player_frame2.png in Resources */ = {isa = PBXBuildFile; fileRef = C32235DB1E6E635700B3F0BB /* player_frame2.png */; };
+		C32235E61E6E635700B3F0BB /* player_frame3.png in Resources */ = {isa = PBXBuildFile; fileRef = C32235DC1E6E635700B3F0BB /* player_frame3.png */; };
+		C32235E71E6E635700B3F0BB /* player_frame4.png in Resources */ = {isa = PBXBuildFile; fileRef = C32235DD1E6E635700B3F0BB /* player_frame4.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +42,18 @@
 		C32235C61E6D50CF00B3F0BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C32235C81E6D50CF00B3F0BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C32235CE1E6E3BD100B3F0BB /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		C32235D01E6E5CCD00B3F0BB /* laser.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = laser.sks; sourceTree = "<group>"; };
+		C32235D21E6E61BB00B3F0BB /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
+		C32235D41E6E635700B3F0BB /* music.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = music.m4a; sourceTree = "<group>"; };
+		C32235D51E6E635700B3F0BB /* explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosion.wav; sourceTree = "<group>"; };
+		C32235D61E6E635700B3F0BB /* laser.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = laser.wav; sourceTree = "<group>"; };
+		C32235D71E6E635700B3F0BB /* particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particle.png; sourceTree = "<group>"; };
+		C32235D81E6E635700B3F0BB /* item0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = item0.png; sourceTree = "<group>"; };
+		C32235D91E6E635700B3F0BB /* enemy_frame1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy_frame1.png; sourceTree = "<group>"; };
+		C32235DA1E6E635700B3F0BB /* player_frame1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_frame1.png; sourceTree = "<group>"; };
+		C32235DB1E6E635700B3F0BB /* player_frame2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_frame2.png; sourceTree = "<group>"; };
+		C32235DC1E6E635700B3F0BB /* player_frame3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_frame3.png; sourceTree = "<group>"; };
+		C32235DD1E6E635700B3F0BB /* player_frame4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_frame4.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,9 +93,21 @@
 				C32235BE1E6D50CF00B3F0BB /* GameViewController.swift */,
 				C32235C01E6D50CF00B3F0BB /* Main.storyboard */,
 				C32235C31E6D50CF00B3F0BB /* Assets.xcassets */,
+				C32235D41E6E635700B3F0BB /* music.m4a */,
+				C32235D51E6E635700B3F0BB /* explosion.wav */,
+				C32235D61E6E635700B3F0BB /* laser.wav */,
+				C32235D71E6E635700B3F0BB /* particle.png */,
+				C32235D81E6E635700B3F0BB /* item0.png */,
+				C32235D91E6E635700B3F0BB /* enemy_frame1.png */,
+				C32235DA1E6E635700B3F0BB /* player_frame1.png */,
+				C32235DB1E6E635700B3F0BB /* player_frame2.png */,
+				C32235DC1E6E635700B3F0BB /* player_frame3.png */,
+				C32235DD1E6E635700B3F0BB /* player_frame4.png */,
 				C32235C51E6D50CF00B3F0BB /* LaunchScreen.storyboard */,
 				C32235C81E6D50CF00B3F0BB /* Info.plist */,
 				C32235CE1E6E3BD100B3F0BB /* GameOverScene.swift */,
+				C32235D01E6E5CCD00B3F0BB /* laser.sks */,
+				C32235D21E6E61BB00B3F0BB /* Explosion.sks */,
 			);
 			path = SideScroller;
 			sourceTree = "<group>";
@@ -136,11 +172,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C32235E41E6E635700B3F0BB /* player_frame1.png in Resources */,
+				C32235E01E6E635700B3F0BB /* laser.wav in Resources */,
+				C32235DF1E6E635700B3F0BB /* explosion.wav in Resources */,
 				C32235C21E6D50CF00B3F0BB /* Main.storyboard in Resources */,
+				C32235E31E6E635700B3F0BB /* enemy_frame1.png in Resources */,
 				C32235B91E6D50CF00B3F0BB /* GameScene.sks in Resources */,
+				C32235DE1E6E635700B3F0BB /* music.m4a in Resources */,
 				C32235C41E6D50CF00B3F0BB /* Assets.xcassets in Resources */,
 				C32235C71E6D50CF00B3F0BB /* LaunchScreen.storyboard in Resources */,
 				C32235BB1E6D50CF00B3F0BB /* Actions.sks in Resources */,
+				C32235E51E6E635700B3F0BB /* player_frame2.png in Resources */,
+				C32235D31E6E61BB00B3F0BB /* Explosion.sks in Resources */,
+				C32235E11E6E635700B3F0BB /* particle.png in Resources */,
+				C32235D11E6E5CCD00B3F0BB /* laser.sks in Resources */,
+				C32235E61E6E635700B3F0BB /* player_frame3.png in Resources */,
+				C32235E21E6E635700B3F0BB /* item0.png in Resources */,
+				C32235E71E6E635700B3F0BB /* player_frame4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,7 +24,7 @@ class GameOverScene :SKScene{
         replyButton.text =  "Play Again"
         replyButton.fontColor = .black
         replyButton.position = CGPoint(x:self.size.width/2,y:50)
-        replyButton.name = "reply"
+        replyButton.name = "replay"
         self.addChild(replyButton)
         
     }

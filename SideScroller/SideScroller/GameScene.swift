@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import AVFoundation
 
 class GameScene: SKScene ,SKPhysicsContactDelegate{
 
@@ -15,13 +16,21 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
     var shipMoveDown : SKAction = SKAction()
     
     var lastBombAdded:TimeInterval = 0
+   
+    var fireRate:TimeInterval = 0.5
+    var timeSinceFire:TimeInterval = 0
+    var lastTime:TimeInterval = 0
     
     
     let backgroundVelocity :CGFloat = 3.0
     let bombVelocity: CGFloat = 5.0
     
-    let playerCategory = 0x1 << 0
-    let bombCategory = 0x1 << 1
+    let noCategory:UInt32 = 0
+    let playerCategory : UInt32 = 0b1
+    let laserCategory : UInt32 = 0b1 << 1
+    let bombCategory : UInt32 = 0b1 << 2
+    
+    var spawnLaserFlag:Bool = true;
     
     
     override func didMove(to view: SKView) {
@@ -49,7 +58,29 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         shipMoveUp = SKAction.moveBy(x: 0, y: 30, duration: 0.2)
         shipMoveDown = SKAction.moveBy(x: 0, y: -30, duration: 0.2)
         
+        
+       // let bg:SKAudioNode = SKAudioNode(fileNamed: "music.m4a")
+        //bg.autoplayLooped = true
+       // self.addChild(bg)
+
+        
         self.addChild(ship)
+        
+//        do
+//        {
+//           // let sounds:[String] = ["explosion","laser"]
+//            for sound in sounds{
+//                let path :String = Bundle.main.path(forResource: sound, ofType: "wav")!
+//                let url :URL = URL(fileURLWithPath: path)
+//                let player:AVAudioPlayer = try AVAudioPlayer(contentsOf: url)
+//                player.prepareToPlay()
+//            }
+//            
+//        }
+//        catch{}
+//
+        
+        
     }
     
     func addBackGround(){
@@ -133,16 +164,94 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
             BodyB = contact.bodyA
         }
         
-        if BodyA.categoryBitMask & UInt32(playerCategory) != 0 && (BodyB.categoryBitMask & UInt32(bombCategory) != 0){
-            ship.removeFromParent()
+        
+        
+        if BodyA.categoryBitMask & playerCategory != 0 && (BodyB.categoryBitMask & bombCategory != 0){
+            let explosion :SKEmitterNode = SKEmitterNode(fileNamed: "Explosion")!
+            
+            
+            explosion.position = contact.bodyA.node!.position
+            
+           // self.run(SKAction.playSoundFileNamed("explosion", waitForCompletion: false))
+            self.addChild(explosion)
+            spawnLaserFlag = false
+            contact.bodyA.node?.removeFromParent()
+            
+            contact.bodyB.node?.removeFromParent()
+            
+            
+            let when = DispatchTime.now() + 2 // change 2 to desired number of seconds
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                let gameOverScene = GameOverScene(size: self.size)
+                self.view?.presentScene(gameOverScene, transition : .doorway(withDuration: 1))
+            }
+            
+            
+           
         }
+        else if BodyA.categoryBitMask & laserCategory != 0 && (BodyB.categoryBitMask & bombCategory != 0){
+        
+            let explosion :SKEmitterNode = SKEmitterNode(fileNamed: "Explosion")!
+            
+            
+            explosion.position = contact.bodyA.node!.position
+            
+            // self.run(SKAction.playSoundFileNamed("explosion", waitForCompletion: false))
+            self.addChild(explosion)
+            //spawnLaserFlag = false
+            contact.bodyA.node?.removeFromParent()
+            
+            contact.bodyB.node?.removeFromParent()
+
+        
+        }
+
+        
+    }
+    
+    func checkLaser(_ frameRate:TimeInterval)
+    {
+        timeSinceFire += frameRate
+        if timeSinceFire < fireRate {
+            return
+        }
+        
+        spawnLaser()
+        
+        timeSinceFire = 0
+    }
+    
+    func spawnLaser()
+    {
+        let scene:SKScene = SKScene(fileNamed: "laser")!
+        let laser = scene.childNode(withName: "laser")!
+        
+        laser.position = ship.position
+        laser.move(toParent: self)
+        
+        laser.physicsBody?.categoryBitMask = laserCategory
+        laser.physicsBody?.collisionBitMask = noCategory
+        laser.physicsBody?.contactTestBitMask = bombCategory
+        //self.run(SKAction.playSoundFileNamed("laser", waitForCompletion: false))
+        
+        let waitAction = SKAction.wait(forDuration: 1.2)
+        let removeAction = SKAction.removeFromParent()
+        laser.run(SKAction.sequence([waitAction,removeAction]))
+        
+        
         
     }
     override func update(_ currentTime: TimeInterval) {
         self.moveBackground()
         self.moveBomb()
         
-        if currentTime - self.lastBombAdded > 1{
+        if spawnLaserFlag
+        {
+            checkLaser(currentTime - lastTime)
+            lastTime = currentTime
+        }
+
+        if currentTime - self.lastBombAdded > 0.5{
             self.lastBombAdded = currentTime + 1
             self.addBomb()
         }
