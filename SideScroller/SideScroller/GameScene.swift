@@ -16,19 +16,21 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
     var shipMoveDown : SKAction = SKAction()
     
     var lastBombAdded:TimeInterval = 0
-   
     var fireRate:TimeInterval = 0.5
     var timeSinceFire:TimeInterval = 0
     var lastTime:TimeInterval = 0
+    var lastItemAdded:TimeInterval = 0;
     
     
     let backgroundVelocity :CGFloat = 3.0
-    let bombVelocity: CGFloat = 5.0
+    let bombVelocity: CGFloat = 6.0
+    let itemVelocity: CGFloat = 4.0
     
     let noCategory:UInt32 = 0
     let playerCategory : UInt32 = 0b1
-    let laserCategory : UInt32 = 0b1 << 1
-    let bombCategory : UInt32 = 0b1 << 2
+    let itemCategory:UInt32 = 0b1 << 1
+    let laserCategory : UInt32 = 0b1 << 2
+    let bombCategory : UInt32 = 0b1 << 3
     
     var spawnLaserFlag:Bool = true;
     
@@ -38,8 +40,24 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         self.addBackGround()
         self.addShip()
         self.addBomb()
+        self.addItem()
+        
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         self.physicsWorld.contactDelegate = self
+        
+        do
+        {
+            let sounds:[String] = ["explosion","laser"]
+            for sound in sounds{
+                let path :String = Bundle.main.path(forResource: sound, ofType: "wav")!
+                let url :URL = URL(fileURLWithPath: path)
+                let player:AVAudioPlayer = try AVAudioPlayer(contentsOf: url)
+                player.prepareToPlay()
+            }
+                    
+        }
+        catch{}
+
     }
 
     
@@ -47,7 +65,8 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         ship = SKSpriteNode(imageNamed: "Spaceship")
         ship.setScale(0.25)
         ship.zRotation = CGFloat(-M_PI/2)
-        ship.physicsBody = SKPhysicsBody(rectangleOf: ship.size)
+        let shipTexture = SKTexture(imageNamed: "SpaceShip")
+        ship.physicsBody = SKPhysicsBody(texture: shipTexture, size: ship.size)//SKPhysicsBody(rectangleOf: ship.size)
         ship.physicsBody?.isDynamic = true
         ship.name = "ship"
         ship.physicsBody?.categoryBitMask = UInt32(playerCategory)
@@ -66,19 +85,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         
         self.addChild(ship)
         
-//        do
-//        {
-//           // let sounds:[String] = ["explosion","laser"]
-//            for sound in sounds{
-//                let path :String = Bundle.main.path(forResource: sound, ofType: "wav")!
-//                let url :URL = URL(fileURLWithPath: path)
-//                let player:AVAudioPlayer = try AVAudioPlayer(contentsOf: url)
-//                player.prepareToPlay()
-//            }
-//            
-//        }
-//        catch{}
-//
+//       //
         
         
     }
@@ -103,6 +110,40 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
                 
                 if bg.position.x <= -bg.size.width{
                     bg.position = CGPoint(x:bg.position.x + bg.size.width * 2, y : bg.position.y)
+                }
+            }
+        })
+    }
+    
+    
+    
+    func addItem() {
+        let item = SKSpriteNode(imageNamed: "item")
+        //item.setScale(0.15)
+       
+        item.zRotation = CGFloat(M_PI/2)
+        let shipTexture = SKTexture(imageNamed: "item")
+        item.physicsBody = SKPhysicsBody(texture: shipTexture, size: item.size)
+        //item.physicsBody = SKPhysicsBody(texture: <#T##SKTexture#>, size: <#T##CGSize#>)//SKPhysicsBody(rectangleOf: item.size)
+        item.physicsBody?.isDynamic = true;
+        item.name = "item"
+        item.physicsBody?.categoryBitMask = itemCategory
+        item.physicsBody?.contactTestBitMask = playerCategory
+        item.physicsBody?.collisionBitMask = noCategory
+        item.physicsBody?.usesPreciseCollisionDetection = true
+        
+        let random :CGFloat = CGFloat(arc4random_uniform(300))
+        
+        item.position = CGPoint(x: self.frame.size.width+20, y: random)
+        
+        self.addChild(item)
+    }
+    func moveItem(){
+        self.enumerateChildNodes(withName: "item", using: {(node,stop)-> Void in
+            if let item = node as? SKSpriteNode{
+                item.position = CGPoint(x: item.position.x - self.itemVelocity, y: item.position.y)
+                if item.position.x < 0{
+                    item.removeFromParent()
                 }
             }
         })
@@ -172,7 +213,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
             
             explosion.position = contact.bodyA.node!.position
             
-           // self.run(SKAction.playSoundFileNamed("explosion", waitForCompletion: false))
+            self.run(SKAction.playSoundFileNamed("explosion", waitForCompletion: false))
             self.addChild(explosion)
             spawnLaserFlag = false
             contact.bodyA.node?.removeFromParent()
@@ -196,7 +237,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
             
             explosion.position = contact.bodyA.node!.position
             
-            // self.run(SKAction.playSoundFileNamed("explosion", waitForCompletion: false))
+            self.run(SKAction.playSoundFileNamed("explosion", waitForCompletion: false))
             self.addChild(explosion)
             //spawnLaserFlag = false
             contact.bodyA.node?.removeFromParent()
@@ -204,6 +245,12 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
             contact.bodyB.node?.removeFromParent()
 
         
+        }
+        else if BodyA.categoryBitMask & playerCategory != 0 && (BodyB.categoryBitMask & itemCategory != 0 ) {
+            
+           
+            
+            contact.bodyB.node?.removeFromParent()
         }
 
         
@@ -232,7 +279,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         laser.physicsBody?.categoryBitMask = laserCategory
         laser.physicsBody?.collisionBitMask = noCategory
         laser.physicsBody?.contactTestBitMask = bombCategory
-        //self.run(SKAction.playSoundFileNamed("laser", waitForCompletion: false))
+        self.run(SKAction.playSoundFileNamed("laser", waitForCompletion: false))
         
         let waitAction = SKAction.wait(forDuration: 1.2)
         let removeAction = SKAction.removeFromParent()
@@ -244,7 +291,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
     override func update(_ currentTime: TimeInterval) {
         self.moveBackground()
         self.moveBomb()
-        
+        self.moveItem()
         if spawnLaserFlag
         {
             checkLaser(currentTime - lastTime)
@@ -255,6 +302,13 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
             self.lastBombAdded = currentTime + 1
             self.addBomb()
         }
+        
+        if currentTime - self.lastItemAdded > 10{
+            self.lastItemAdded = currentTime + 1
+            self.addItem()
+        }
+        
+        
     }
   
         
