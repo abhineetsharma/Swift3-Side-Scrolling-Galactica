@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SideScroller/GameScene.swift"
-            timestampString = "510712644.952562"
+            timestampString = "510827671.285534"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "addBackGround()"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SideScroller/GameScene.swift"
-            timestampString = "510722892.593367"
+            timestampString = "510827671.285534"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "317"
-            endingLineNumber = "317"
+            startingLineNumber = "332"
+            endingLineNumber = "332"
             landmarkName = "didBegin(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SideScroller/GameScene.swift"
-            timestampString = "510722892.593367"
+            timestampString = "510827671.285534"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "315"
-            endingLineNumber = "315"
+            startingLineNumber = "330"
+            endingLineNumber = "330"
             landmarkName = "didBegin(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,12 +58,214 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SideScroller/GameScene.swift"
-            timestampString = "510722892.593367"
+            timestampString = "510827671.285534"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "316"
-            endingLineNumber = "316"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
             landmarkName = "didBegin(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SideScroller/GameScene.swift"
+            timestampString = "510816903.464309"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "GameScene"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SideScroller.GameScene.init (size : __C.CGSize) -&gt; SideScroller.GameScene"
+                  moduleName = "SideScroller"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhineetsharma/BitBucket/p04-sharma/SideScroller/SideScroller/GameScene.swift"
+                  timestampString = "510827214.440981"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "22">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SideScroller.GameScene.__allocating_init (size : __C.CGSize) -&gt; SideScroller.GameScene"
+                  moduleName = "SideScroller"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhineetsharma/BitBucket/p04-sharma/SideScroller/SideScroller/GameScene.swift"
+                  timestampString = "510827214.446067"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SideScroller.GameScene.init () -&gt; SideScroller.GameScene"
+                  moduleName = "SideScroller"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhineetsharma/BitBucket/p04-sharma/SideScroller/SideScroller/GameScene.swift"
+                  timestampString = "510827214.451696"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SideScroller.GameScene.__allocating_init () -&gt; SideScroller.GameScene"
+                  moduleName = "SideScroller"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhineetsharma/BitBucket/p04-sharma/SideScroller/SideScroller/GameScene.swift"
+                  timestampString = "510827214.457294"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SideScroller.GameScene.__allocating_init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;SideScroller.GameScene&gt;"
+                  moduleName = "SideScroller"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhineetsharma/BitBucket/p04-sharma/SideScroller/SideScroller/GameScene.swift"
+                  timestampString = "510827214.460886"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SideScroller.GameScene.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;SideScroller.GameScene&gt;"
+                  moduleName = "SideScroller"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhineetsharma/BitBucket/p04-sharma/SideScroller/SideScroller/GameScene.swift"
+                  timestampString = "510827214.464181"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SideScroller/GameScene.swift"
+            timestampString = "510816907.182356"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "GameScene"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SideScroller.GameScene.ship.getter : __ObjC.SKSpriteNode"
+                  moduleName = "SideScroller"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhineetsharma/BitBucket/p04-sharma/SideScroller/SideScroller/GameScene.swift"
+                  timestampString = "510827214.471614"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "35">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SideScroller.GameScene.init (size : __C.CGSize) -&gt; SideScroller.GameScene"
+                  moduleName = "SideScroller"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhineetsharma/BitBucket/p04-sharma/SideScroller/SideScroller/GameScene.swift"
+                  timestampString = "510827214.475739"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "68">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SideScroller.GameScene.init () -&gt; SideScroller.GameScene"
+                  moduleName = "SideScroller"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhineetsharma/BitBucket/p04-sharma/SideScroller/SideScroller/GameScene.swift"
+                  timestampString = "510827214.47789"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SideScroller.GameScene.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;SideScroller.GameScene&gt;"
+                  moduleName = "SideScroller"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhineetsharma/BitBucket/p04-sharma/SideScroller/SideScroller/GameScene.swift"
+                  timestampString = "510827214.480175"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SideScroller/GameScene.swift"
+            timestampString = "510827671.285534"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "370"
+            endingLineNumber = "370"
+            landmarkName = "update(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

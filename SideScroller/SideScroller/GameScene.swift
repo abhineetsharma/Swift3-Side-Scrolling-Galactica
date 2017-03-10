@@ -13,15 +13,19 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
 
     var enemy :SKSpriteNode = SKSpriteNode()
     var ship :SKSpriteNode = SKSpriteNode()
+    
     var shipMoveUp:SKAction = SKAction()
     var shipMoveDown : SKAction = SKAction()
     
     var lastBombAdded:TimeInterval = 0
-    var fireRate:TimeInterval = 1
+    var fireRate:TimeInterval = 0.8
     var timeSinceFire:TimeInterval = 0
     var lastTime:TimeInterval = 0
     var lastItemAdded:TimeInterval = 0;
+    var lastMissileFired : TimeInterval = 0
     var timeSinceEnemyFire: TimeInterval = 0
+    var lastEnemyAdded: TimeInterval = 0
+    
     
     
     let backgroundVelocity :CGFloat = 3.0
@@ -36,17 +40,19 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
     let bombCategory : UInt32 = 0b1 << 3
     let enemyCategory : UInt32 = 0b1 << 4
     
-    var spawnLaserFlag:Bool = true;
-   
+    var spawnLaserFlag:Bool = true
+    var isEnemyAdded:Bool = false
+    var GameLoadFlag:Bool = true
     
     
     override func didMove(to view: SKView) {
+        GameLoadFlag = true
         self.backgroundColor = .white
         self.addBackGround()
         self.addShip()
         self.addBomb()
         self.addItem()
-        self.addEnemy()
+        //self.addEnemy()
         
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         self.physicsWorld.contactDelegate = self
@@ -129,8 +135,8 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
     }
     
     func addBomb() {
-        let bomb = SKSpriteNode(imageNamed: "bomb")
-        bomb.setScale(0.15)
+        let bomb = SKSpriteNode(imageNamed: "enemyShip1")
+        bomb.setScale(0.2)
         bomb.physicsBody = SKPhysicsBody(rectangleOf: bomb.size)
         bomb.physicsBody?.isDynamic = true;
         bomb.name = "bomb"
@@ -147,9 +153,9 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
     }
     
     func addMissile() {
-        let missile = SKSpriteNode(imageNamed: "missile1")
-        missile.setScale(0.05)
-        missile.zRotation = CGFloat(-M_PI)
+        let missile = SKSpriteNode(imageNamed: "bomb")
+        missile.setScale(0.15)
+        //missile.zRotation = CGFloat(M_PI)
         missile.physicsBody = SKPhysicsBody(rectangleOf: missile.size)
         missile.physicsBody?.isDynamic = true;
         missile.name = "missile"
@@ -166,7 +172,8 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
     }
     
     func addEnemy(){
-        enemy = SKSpriteNode(imageNamed: "Enemy")
+        isEnemyAdded = true;
+        enemy = SKSpriteNode(imageNamed: "rocket")
         enemy.setScale(0.2)
         enemy.zRotation = CGFloat(M_PI/2)
         let EnemyTexture = SKTexture(imageNamed: "Enemy")
@@ -314,10 +321,11 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
             contact.bodyB.node?.removeFromParent()
         }
         else if BodyA.categoryBitMask & laserCategory != 0 && (BodyB.categoryBitMask & enemyCategory != 0){//Enemy vs player
-            let explosion :SKEmitterNode = SKEmitterNode(fileNamed: "Explosion")!
-            explosion.position = contact.bodyA.node!.position
+            //let explosion :SKEmitterNode = SKEmitterNode(fileNamed: "Explosion")!
+            //explosion.position = contact.bodyA.node!.position
             //self.run(SKAction.playSoundFileNamed("explosion", waitForCompletion: false))
             //self.addChild(explosion)
+            
         }
 
         
@@ -333,12 +341,20 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         self.moveBomb()
         self.moveItem()
         self.moveMissile()
+        
         if spawnLaserFlag
         {
             checkLaser(currentTime - lastTime)
             lastTime = currentTime
         }
 
+        if(GameLoadFlag ){
+            self.lastBombAdded = currentTime
+            self.lastItemAdded = currentTime
+            self.lastEnemyAdded  = currentTime
+            GameLoadFlag = false
+            
+        }
         if currentTime - self.lastBombAdded > 0.5{
             self.lastBombAdded = currentTime + 1
             self.addBomb()
@@ -349,11 +365,18 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
             self.addItem()
         }
         
-        if(currentTime - self.lastItemAdded > 1)
+        if currentTime - self.lastEnemyAdded > 100
         {
-            self.lastItemAdded = currentTime + 1
-            //spawnEnemyLaser();
-            self.addMissile()
+            self.lastEnemyAdded = currentTime + 1
+            self.addEnemy()
+        }
+        if(isEnemyAdded){
+            if currentTime - self.lastItemAdded > 1
+            {
+                self.lastItemAdded = currentTime + 1
+                //spawnEnemyLaser();
+                self.addMissile()
+            }
         }
         //self.lastBombAdded = currentTime + 1
         
@@ -399,17 +422,16 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
     
     func spawnEnemyLaser(){
         let missile:SKSpriteNode = SKSpriteNode(imageNamed: "missile1")
-        //let laser = scene.childNode(withName: "missile1")!
+        
         missile.setScale(0.1)
         missile.zRotation = CGFloat(-M_PI)
-        //let ypos:CGFloat = ship.position.y+pos
+        
         missile.position = enemy.position
-        //missile.move(toParent: self)
         
         missile.physicsBody?.categoryBitMask = laserCategory
         missile.physicsBody?.collisionBitMask = noCategory
         missile.physicsBody?.contactTestBitMask = playerCategory
-        //self.run(SKAction.playSoundFileNamed("laser", waitForCompletion: false))
+        
         
         
         missile.physicsBody?.velocity = CGVector(dx: -100, dy: 0)
