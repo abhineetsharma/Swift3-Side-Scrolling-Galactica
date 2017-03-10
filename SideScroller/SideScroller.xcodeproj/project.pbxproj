@@ -28,6 +28,17 @@
 		C32235E51E6E635700B3F0BB /* player_frame2.png in Resources */ = {isa = PBXBuildFile; fileRef = C32235DB1E6E635700B3F0BB /* player_frame2.png */; };
 		C32235E61E6E635700B3F0BB /* player_frame3.png in Resources */ = {isa = PBXBuildFile; fileRef = C32235DC1E6E635700B3F0BB /* player_frame3.png */; };
 		C32235E71E6E635700B3F0BB /* player_frame4.png in Resources */ = {isa = PBXBuildFile; fileRef = C32235DD1E6E635700B3F0BB /* player_frame4.png */; };
+		C398E5851E70DCF10037BA3C /* rocket.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E5841E70DCF10037BA3C /* rocket.png */; };
+		C398E58E1E70DEE60037BA3C /* backgrd1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C398E5861E70DEE60037BA3C /* backgrd1.jpg */; };
+		C398E58F1E70DEE60037BA3C /* cargoship.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E5871E70DEE60037BA3C /* cargoship.png */; };
+		C398E5901E70DEE60037BA3C /* mRhKU.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E5881E70DEE60037BA3C /* mRhKU.png */; };
+		C398E5911E70DEE60037BA3C /* fighterspr1.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E5891E70DEE60037BA3C /* fighterspr1.png */; };
+		C398E5921E70DEE60037BA3C /* 5543a974f7a6ba02ee9a378fd58e0519.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E58A1E70DEE60037BA3C /* 5543a974f7a6ba02ee9a378fd58e0519.png */; };
+		C398E5931E70DEE60037BA3C /* F5S4.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E58B1E70DEE60037BA3C /* F5S4.png */; };
+		C398E5941E70DEE60037BA3C /* mship1.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E58C1E70DEE60037BA3C /* mship1.png */; };
+		C398E5951E70DEE60037BA3C /* spco.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E58D1E70DEE60037BA3C /* spco.png */; };
+		C398E59D1E70E0630037BA3C /* GameStartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C398E59C1E70E0630037BA3C /* GameStartScene.swift */; };
+		C398E59F1E70FE070037BA3C /* missile1.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E59E1E70FE070037BA3C /* missile1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +65,17 @@
 		C32235DB1E6E635700B3F0BB /* player_frame2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_frame2.png; sourceTree = "<group>"; };
 		C32235DC1E6E635700B3F0BB /* player_frame3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_frame3.png; sourceTree = "<group>"; };
 		C32235DD1E6E635700B3F0BB /* player_frame4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_frame4.png; sourceTree = "<group>"; };
+		C398E5841E70DCF10037BA3C /* rocket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rocket.png; sourceTree = "<group>"; };
+		C398E5861E70DEE60037BA3C /* backgrd1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = backgrd1.jpg; sourceTree = "<group>"; };
+		C398E5871E70DEE60037BA3C /* cargoship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cargoship.png; sourceTree = "<group>"; };
+		C398E5881E70DEE60037BA3C /* mRhKU.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mRhKU.png; sourceTree = "<group>"; };
+		C398E5891E70DEE60037BA3C /* fighterspr1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fighterspr1.png; sourceTree = "<group>"; };
+		C398E58A1E70DEE60037BA3C /* 5543a974f7a6ba02ee9a378fd58e0519.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5543a974f7a6ba02ee9a378fd58e0519.png; sourceTree = "<group>"; };
+		C398E58B1E70DEE60037BA3C /* F5S4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = F5S4.png; sourceTree = "<group>"; };
+		C398E58C1E70DEE60037BA3C /* mship1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mship1.png; sourceTree = "<group>"; };
+		C398E58D1E70DEE60037BA3C /* spco.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spco.png; sourceTree = "<group>"; };
+		C398E59C1E70E0630037BA3C /* GameStartScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameStartScene.swift; sourceTree = "<group>"; };
+		C398E59E1E70FE070037BA3C /* missile1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,9 +115,28 @@
 				C32235BE1E6D50CF00B3F0BB /* GameViewController.swift */,
 				C32235C01E6D50CF00B3F0BB /* Main.storyboard */,
 				C32235C31E6D50CF00B3F0BB /* Assets.xcassets */,
-				C32235D41E6E635700B3F0BB /* music.m4a */,
-				C32235D51E6E635700B3F0BB /* explosion.wav */,
-				C32235D61E6E635700B3F0BB /* laser.wav */,
+				C398E5961E70DFA60037BA3C /* image */,
+				C398E5971E70DFC20037BA3C /* sound */,
+				C32235C51E6D50CF00B3F0BB /* LaunchScreen.storyboard */,
+				C32235C81E6D50CF00B3F0BB /* Info.plist */,
+				C32235CE1E6E3BD100B3F0BB /* GameOverScene.swift */,
+				C32235D01E6E5CCD00B3F0BB /* laser.sks */,
+				C32235D21E6E61BB00B3F0BB /* Explosion.sks */,
+				C398E59C1E70E0630037BA3C /* GameStartScene.swift */,
+			);
+			path = SideScroller;
+			sourceTree = "<group>";
+		};
+		C398E5961E70DFA60037BA3C /* image */ = {
+			isa = PBXGroup;
+			children = (
+				C398E59E1E70FE070037BA3C /* missile1.png */,
+				C398E5861E70DEE60037BA3C /* backgrd1.jpg */,
+				C398E5871E70DEE60037BA3C /* cargoship.png */,
+				C398E5881E70DEE60037BA3C /* mRhKU.png */,
+				C398E5891E70DEE60037BA3C /* fighterspr1.png */,
+				C398E58A1E70DEE60037BA3C /* 5543a974f7a6ba02ee9a378fd58e0519.png */,
+				C398E58B1E70DEE60037BA3C /* F5S4.png */,
 				C32235D71E6E635700B3F0BB /* particle.png */,
 				C32235D81E6E635700B3F0BB /* item0.png */,
 				C32235D91E6E635700B3F0BB /* enemy_frame1.png */,
@@ -103,13 +144,21 @@
 				C32235DB1E6E635700B3F0BB /* player_frame2.png */,
 				C32235DC1E6E635700B3F0BB /* player_frame3.png */,
 				C32235DD1E6E635700B3F0BB /* player_frame4.png */,
-				C32235C51E6D50CF00B3F0BB /* LaunchScreen.storyboard */,
-				C32235C81E6D50CF00B3F0BB /* Info.plist */,
-				C32235CE1E6E3BD100B3F0BB /* GameOverScene.swift */,
-				C32235D01E6E5CCD00B3F0BB /* laser.sks */,
-				C32235D21E6E61BB00B3F0BB /* Explosion.sks */,
+				C398E58C1E70DEE60037BA3C /* mship1.png */,
+				C398E58D1E70DEE60037BA3C /* spco.png */,
+				C398E5841E70DCF10037BA3C /* rocket.png */,
 			);
-			path = SideScroller;
+			name = image;
+			sourceTree = "<group>";
+		};
+		C398E5971E70DFC20037BA3C /* sound */ = {
+			isa = PBXGroup;
+			children = (
+				C32235D41E6E635700B3F0BB /* music.m4a */,
+				C32235D51E6E635700B3F0BB /* explosion.wav */,
+				C32235D61E6E635700B3F0BB /* laser.wav */,
+			);
+			name = sound;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,21 +221,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C398E58F1E70DEE60037BA3C /* cargoship.png in Resources */,
 				C32235E41E6E635700B3F0BB /* player_frame1.png in Resources */,
+				C398E59F1E70FE070037BA3C /* missile1.png in Resources */,
 				C32235E01E6E635700B3F0BB /* laser.wav in Resources */,
 				C32235DF1E6E635700B3F0BB /* explosion.wav in Resources */,
 				C32235C21E6D50CF00B3F0BB /* Main.storyboard in Resources */,
 				C32235E31E6E635700B3F0BB /* enemy_frame1.png in Resources */,
 				C32235B91E6D50CF00B3F0BB /* GameScene.sks in Resources */,
 				C32235DE1E6E635700B3F0BB /* music.m4a in Resources */,
+				C398E58E1E70DEE60037BA3C /* backgrd1.jpg in Resources */,
+				C398E5921E70DEE60037BA3C /* 5543a974f7a6ba02ee9a378fd58e0519.png in Resources */,
+				C398E5901E70DEE60037BA3C /* mRhKU.png in Resources */,
+				C398E5851E70DCF10037BA3C /* rocket.png in Resources */,
+				C398E5941E70DEE60037BA3C /* mship1.png in Resources */,
 				C32235C41E6D50CF00B3F0BB /* Assets.xcassets in Resources */,
 				C32235C71E6D50CF00B3F0BB /* LaunchScreen.storyboard in Resources */,
 				C32235BB1E6D50CF00B3F0BB /* Actions.sks in Resources */,
 				C32235E51E6E635700B3F0BB /* player_frame2.png in Resources */,
 				C32235D31E6E61BB00B3F0BB /* Explosion.sks in Resources */,
+				C398E5951E70DEE60037BA3C /* spco.png in Resources */,
 				C32235E11E6E635700B3F0BB /* particle.png in Resources */,
 				C32235D11E6E5CCD00B3F0BB /* laser.sks in Resources */,
 				C32235E61E6E635700B3F0BB /* player_frame3.png in Resources */,
+				C398E5911E70DEE60037BA3C /* fighterspr1.png in Resources */,
+				C398E5931E70DEE60037BA3C /* F5S4.png in Resources */,
 				C32235E21E6E635700B3F0BB /* item0.png in Resources */,
 				C32235E71E6E635700B3F0BB /* player_frame4.png in Resources */,
 			);
@@ -199,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C398E59D1E70E0630037BA3C /* GameStartScene.swift in Sources */,
 				C32235BD1E6D50CF00B3F0BB /* GameScene.swift in Sources */,
 				C32235BF1E6D50CF00B3F0BB /* GameViewController.swift in Sources */,
 				C32235CF1E6E3BD100B3F0BB /* GameOverScene.swift in Sources */,
@@ -364,6 +424,7 @@
 				C32235CD1E6D50CF00B3F0BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
