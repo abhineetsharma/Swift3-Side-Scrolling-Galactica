@@ -46,6 +46,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
     var spawnLaserFlag:Bool = true
     var isEnemyAdded:Bool = false
     var GameLoadFlag:Bool = true
+    var soundFlag : Bool = false
     
     
     override func didMove(to view: SKView) {
@@ -60,9 +61,12 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         self.physicsWorld.contactDelegate = self
         
-        let bg:SKAudioNode = SKAudioNode(fileNamed: "music.m4a")
-        bg.autoplayLooped = true
-        self.addChild(bg)
+        if soundFlag
+        {
+            let bg:SKAudioNode = SKAudioNode(fileNamed: "music.m4a")
+            bg.autoplayLooped = true
+            self.addChild(bg)
+        }
         
         do
         {
@@ -101,14 +105,14 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         slife = SKSpriteNode(imageNamed: "Spaceship")
         slife.setScale(0.10)
         slife.zRotation = CGFloat(-M_PI/2)
-        slife.position = CGPoint(x: 75, y: self.size.height-20)
+        slife.position = CGPoint(x: 75, y: self.size.height-30)
         
         lifeLabel = SKLabelNode(fontNamed : "Cochin")
         let lifeLeft:String = String(ship.userData?["life"]! as! Int)
-        lifeLabel.text = "X " + lifeLeft
-        lifeLabel.fontSize = 20
+        lifeLabel.text = "x " + lifeLeft
+        lifeLabel.fontSize = 17
         lifeLabel.fontColor = .white
-        lifeLabel.position = CGPoint(x: slife.position.x + 30 , y:slife.position.y )
+        lifeLabel.position = CGPoint(x: slife.position.x + 40 , y:slife.position.y - 5 )
         self.addChild(lifeLabel)
         self.addChild(slife)
         
@@ -310,13 +314,15 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         
         
         if BodyA.categoryBitMask & playerCategory != 0 && (BodyB.categoryBitMask & bombCategory != 0){//PLAYER VS ENEMY FIRE
+            
+            if soundFlag
+            {
+                self.run(SKAction.playSoundFileNamed("explosion", waitForCompletion: false))
+            }
             let explosion :SKEmitterNode = SKEmitterNode(fileNamed: "Explosion")!
-            
-            
             explosion.position = contact.bodyA.node!.position
-            
-            self.run(SKAction.playSoundFileNamed("explosion", waitForCompletion: false))
             self.addChild(explosion)
+
             spawnLaserFlag = false
             var lifeLeft = ship.userData?["life"]! as! Int
             print("ship life ",lifeLeft)
@@ -345,7 +351,9 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
                 explosion.position = contact.bodyA.node!.position
                 contact.bodyA.node?.removeFromParent()
                 contact.bodyB.node?.removeFromParent()
-                self.run(SKAction.playSoundFileNamed("explosion", waitForCompletion: false))
+                if soundFlag{
+                    self.run(SKAction.playSoundFileNamed("explosion", waitForCompletion: false))
+                }
                 self.addChild(explosion)
                 
                 DispatchQueue.main.asyncAfter(deadline: when) {
@@ -369,8 +377,9 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
             
             
             explosion.position = contact.bodyA.node!.position
-            
-            self.run(SKAction.playSoundFileNamed("explosion", waitForCompletion: false))
+            if soundFlag{
+                self.run(SKAction.playSoundFileNamed("explosion", waitForCompletion: false))
+            }
             self.addChild(explosion)
             //spawnLaserFlag = false
             contact.bodyA.node?.removeFromParent()
@@ -400,7 +409,9 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
                 
                 let explosion :SKEmitterNode = SKEmitterNode(fileNamed: "Explosion")!
                 explosion.position = contact.bodyA.node!.position
-                self.run(SKAction.playSoundFileNamed("explosion", waitForCompletion: false))
+                if soundFlag{
+                    self.run(SKAction.playSoundFileNamed("explosion", waitForCompletion: false))
+                }
                 self.addChild(explosion)
                 contact.bodyA.node?.removeFromParent()
                 
@@ -505,8 +516,9 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         laser.physicsBody?.categoryBitMask = laserCategory
         laser.physicsBody?.collisionBitMask = noCategory
         laser.physicsBody?.contactTestBitMask = bombCategory
-        //self.run(SKAction.playSoundFileNamed("laser", waitForCompletion: false))
-        
+        if soundFlag{
+            self.run(SKAction.playSoundFileNamed("laser", waitForCompletion: false))
+        }
         let waitAction = SKAction.wait(forDuration: 1.2)
         let removeAction = SKAction.removeFromParent()
         laser.run(SKAction.sequence([waitAction,removeAction]))
