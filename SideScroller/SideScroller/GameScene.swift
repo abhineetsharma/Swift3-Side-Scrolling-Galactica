@@ -447,8 +447,8 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         self.moveItem()
         self.moveMissile()
         cTime = currentTime
-        if spawnLaserFlag
-        {
+        
+        if spawnLaserFlag{
             checkLaser(currentTime - lastTime)
             lastTime = currentTime
         }
