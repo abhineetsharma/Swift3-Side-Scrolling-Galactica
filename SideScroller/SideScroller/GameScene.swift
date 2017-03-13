@@ -15,6 +15,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
     var ship :SKSpriteNode = SKSpriteNode()
     var slife : SKSpriteNode = SKSpriteNode()
     var lifeLabel : SKLabelNode = SKLabelNode()
+    var scoreLabel : SKLabelNode = SKLabelNode()
     
     var shipMoveUp:SKAction = SKAction()
     var shipMoveDown : SKAction = SKAction()
@@ -31,9 +32,9 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
     
     
     
-    let backgroundVelocity :CGFloat = 3.0
-    let bombVelocity: CGFloat = 6.0
-    let itemVelocity: CGFloat = 4.0
+    var backgroundVelocity :CGFloat = 3.0
+    var bombVelocity: CGFloat = 6.0
+    var itemVelocity: CGFloat = 4.0
     let EnemyHover : CGFloat = 3.0
     
     let noCategory:UInt32 = 0
@@ -49,6 +50,8 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
     var soundFlag : Bool = false
     
     var powerUp:Int = 0
+    var score: Int = 0
+    var enemyLife : Int = 40
     
     
     override func didMove(to view: SKView) {
@@ -58,7 +61,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         self.addShip()
         self.addBomb()
         self.addItem()
-        //self.addEnemy()
+        self.addScoreBoard()
         self.powerUp = 0
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         self.physicsWorld.contactDelegate = self
@@ -89,7 +92,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         
         switch (num) {
         case 1:
-            fireRate -= 0.5
+            fireRate -= 0.2
             break
         case 2:
             powerUp = 1
@@ -101,6 +104,9 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
             slife.removeFromParent()
             lifeLabel.removeFromParent()
             self.addShipLife()
+            break
+        case 4:
+            fireRate = 0.8
             break
             
         default:
@@ -127,7 +133,15 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         }
         
     }
-    
+    func addScoreBoard(){
+        scoreLabel = SKLabelNode(fontNamed : "Cochin")
+        //let lifeLeft:String = String(ship.userData?["life"]! as! Int)
+        scoreLabel.text = "Score : " + String(score)
+        scoreLabel.fontSize = 17
+        scoreLabel.fontColor = .white
+        scoreLabel.position = CGPoint(x: 600 , y:self.size.height-30 )
+        self.addChild(scoreLabel)
+    }
     func addShipLife(){
         slife = SKSpriteNode(imageNamed: "Spaceship")
         slife.setScale(0.10)
@@ -194,7 +208,9 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
     }
     
     func addBomb() {
-        let bomb = SKSpriteNode(imageNamed: "enemyShip1")
+        let name:String = "enemyShip" + String(arc4random_uniform(2) + 1)
+        let bomb = SKSpriteNode(imageNamed: name)
+        print(name)
         bomb.setScale(0.2)
         bomb.physicsBody = SKPhysicsBody(rectangleOf: bomb.size)
         bomb.physicsBody?.isDynamic = true;
@@ -246,7 +262,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         
         enemy.userData = NSMutableDictionary()
         
-        enemy.userData?.setValue(40, forKey: "life")
+        enemy.userData?.setValue(self.enemyLife , forKey: "life")
         
         let moveAction:SKAction = SKAction.moveBy(x: 0, y: -200, duration:2);
         moveAction.timingMode = .easeInEaseOut
@@ -374,6 +390,9 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
                 BodyB.node?.removeFromParent()
                 self.addShipLife()
                 spawnLaserFlag = true
+                self.powerUp = 4
+                self.power(num: 4)
+                
             }
             else
             {
@@ -410,10 +429,11 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
                 self.run(SKAction.playSoundFileNamed("explosion", waitForCompletion: false))
             }
             
-            //spawnLaserFlag = false
-            contact.bodyA.node?.removeFromParent()
+            BodyA.node?.removeFromParent()
+            BodyB.node?.removeFromParent()
             
-            contact.bodyB.node?.removeFromParent()
+            self.score += 5
+            scoreLabel.text = "Score : " + String(score)
 
         
         }
@@ -427,6 +447,8 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         else if BodyA.categoryBitMask & laserCategory != 0 && (BodyB.categoryBitMask & enemyCategory != 0){//Enemy vs player
             var lifeLeft = enemy.userData?["life"]! as! Int
             print(lifeLeft)
+            self.score += 10
+            scoreLabel.text = "Score : " + String(score)
             if lifeLeft > 0
             {
                 lifeLeft -= 1
@@ -508,17 +530,21 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         {
             self.isEnemyAdded = true
             self.lastEnemyAdded = currentTime + 1
+            
+            backgroundVelocity += 1.0
+            bombVelocity += 1.0
+            itemVelocity += 1.0
+            self.enemyLife *= 2
+            
             self.addEnemy()
         }
         if(self.isEnemyAdded){
             if currentTime - self.lastItemAdded > 1
             {
                 self.lastItemAdded = currentTime + 1
-                //spawnEnemyLaser();
                 self.addMissile()
             }
         }
-        //self.lastBombAdded = currentTime + 1
         
         
     }
@@ -529,10 +555,8 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
             return
         }
         
-        // spawnLaser(30)
-        //spawnLaser(0)
         
-        switch powerUp {
+        switch self.powerUp {
         case 1:
             spawnLaser(30)
             spawnLaser(-30)

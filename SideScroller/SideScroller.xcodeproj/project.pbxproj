@@ -30,7 +30,7 @@
 		C32235E71E6E635700B3F0BB /* player_frame4.png in Resources */ = {isa = PBXBuildFile; fileRef = C32235DD1E6E635700B3F0BB /* player_frame4.png */; };
 		C398E5851E70DCF10037BA3C /* plane8.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E5841E70DCF10037BA3C /* plane8.png */; };
 		C398E58E1E70DEE60037BA3C /* backgrd1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C398E5861E70DEE60037BA3C /* backgrd1.jpg */; };
-		C398E58F1E70DEE60037BA3C /* plane1.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E5871E70DEE60037BA3C /* plane1.png */; };
+		C398E58F1E70DEE60037BA3C /* enemyShip2.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E5871E70DEE60037BA3C /* enemyShip2.png */; };
 		C398E5901E70DEE60037BA3C /* enemyShip1.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E5881E70DEE60037BA3C /* enemyShip1.png */; };
 		C398E5911E70DEE60037BA3C /* plane2.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E5891E70DEE60037BA3C /* plane2.png */; };
 		C398E5921E70DEE60037BA3C /* plane3.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E58A1E70DEE60037BA3C /* plane3.png */; };
@@ -67,7 +67,7 @@
 		C32235DD1E6E635700B3F0BB /* player_frame4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_frame4.png; sourceTree = "<group>"; };
 		C398E5841E70DCF10037BA3C /* plane8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane8.png; sourceTree = "<group>"; };
 		C398E5861E70DEE60037BA3C /* backgrd1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = backgrd1.jpg; sourceTree = "<group>"; };
-		C398E5871E70DEE60037BA3C /* plane1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane1.png; sourceTree = "<group>"; };
+		C398E5871E70DEE60037BA3C /* enemyShip2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemyShip2.png; sourceTree = "<group>"; };
 		C398E5881E70DEE60037BA3C /* enemyShip1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemyShip1.png; sourceTree = "<group>"; };
 		C398E5891E70DEE60037BA3C /* plane2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane2.png; sourceTree = "<group>"; };
 		C398E58A1E70DEE60037BA3C /* plane3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane3.png; sourceTree = "<group>"; };
@@ -132,7 +132,7 @@
 			children = (
 				C398E59E1E70FE070037BA3C /* missile1.png */,
 				C398E5861E70DEE60037BA3C /* backgrd1.jpg */,
-				C398E5871E70DEE60037BA3C /* plane1.png */,
+				C398E5871E70DEE60037BA3C /* enemyShip2.png */,
 				C398E5881E70DEE60037BA3C /* enemyShip1.png */,
 				C398E5891E70DEE60037BA3C /* plane2.png */,
 				C398E58A1E70DEE60037BA3C /* plane3.png */,
@@ -221,7 +221,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C398E58F1E70DEE60037BA3C /* plane1.png in Resources */,
+				C398E58F1E70DEE60037BA3C /* enemyShip2.png in Resources */,
 				C32235E41E6E635700B3F0BB /* player_frame1.png in Resources */,
 				C398E59F1E70FE070037BA3C /* missile1.png in Resources */,
 				C32235E01E6E635700B3F0BB /* laser.wav in Resources */,
