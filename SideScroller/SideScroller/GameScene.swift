@@ -48,6 +48,8 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
     var GameLoadFlag:Bool = true
     var soundFlag : Bool = false
     
+    var powerUp:Int = 0
+    
     
     override func didMove(to view: SKView) {
         GameLoadFlag = true
@@ -57,7 +59,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         self.addBomb()
         self.addItem()
         //self.addEnemy()
-        
+        self.powerUp = 0
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         self.physicsWorld.contactDelegate = self
         
@@ -81,6 +83,31 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         }
         catch{}
 
+    }
+    
+    func power(num :Int){
+        
+        switch (num) {
+        case 1:
+            fireRate -= 0.5
+            break
+        case 2:
+            powerUp = 1
+            break
+        case 3:
+            var lifeLeft = ship.userData?["life"]! as! Int
+            lifeLeft += 1
+            ship.userData?.setValue(lifeLeft, forKey: "life")
+            slife.removeFromParent()
+            lifeLabel.removeFromParent()
+            self.addShipLife()
+            break
+            
+        default:
+            spawnLaser(0)
+            break;
+        }
+    
     }
     
     
@@ -128,7 +155,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         ship.physicsBody?.isDynamic = true
         ship.name = "ship"
         ship.physicsBody?.categoryBitMask = UInt32(playerCategory)
-        ship.physicsBody?.contactTestBitMask = UInt32(bombCategory)
+        ship.physicsBody?.contactTestBitMask = bombCategory | itemCategory
         ship.physicsBody?.collisionBitMask = 0
         ship.position = CGPoint(x: 120, y: 160)
         
@@ -215,11 +242,11 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         enemy.physicsBody?.categoryBitMask = UInt32(enemyCategory)
         enemy.physicsBody?.contactTestBitMask = UInt32(laserCategory)
         enemy.physicsBody?.collisionBitMask = 0
-        enemy.position = CGPoint(x: self.size.width-100, y: self.size.height-100)
+        enemy.position = CGPoint(x: self.size.width, y: self.size.height-100)
         
         enemy.userData = NSMutableDictionary()
         
-        enemy.userData?.setValue(10, forKey: "life")
+        enemy.userData?.setValue(40, forKey: "life")
         
         let moveAction:SKAction = SKAction.moveBy(x: 0, y: -200, duration:2);
         moveAction.timingMode = .easeInEaseOut
@@ -230,8 +257,9 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         
         let repeatAction : SKAction = SKAction.repeatForever(sequence)
         enemy.run(repeatAction, withKey: "EnemyMove")//set as a constant
-        
-        
+        let moveActionIntoView : SKAction = SKAction.moveBy(x: -150, y: 0, duration:1);
+        moveActionIntoView.timingMode = .easeInEaseOut
+        enemy.run(moveActionIntoView);
         self.addChild(enemy)
         
     }
@@ -280,6 +308,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
     }
     
     
+    
     //-----------------------------------------------SCREEN TOUCHES-----------------------------------------------
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch: AnyObject in touches {
@@ -300,6 +329,12 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
     func didBegin(_ contact: SKPhysicsContact) {
         var BodyA:SKPhysicsBody
         var BodyB:SKPhysicsBody
+        
+        self.enumerateChildNodes(withName: "exe", using: {(node,stop)-> Void in
+            if let bg = node as? SKSpriteNode{
+                bg.removeFromParent()
+            }
+        })
     
         if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask
         {
@@ -321,6 +356,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
             }
             let explosion :SKEmitterNode = SKEmitterNode(fileNamed: "Explosion")!
             explosion.position = contact.bodyA.node!.position
+            explosion.name = "exe"
             self.addChild(explosion)
 
             spawnLaserFlag = false
@@ -335,14 +371,12 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
                 ship.userData?.setValue(lifeLeft, forKey: "life")
                 slife.removeFromParent()
                 lifeLabel.removeFromParent()
-                contact.bodyB.node?.removeFromParent()
+                BodyB.node?.removeFromParent()
                 self.addShipLife()
                 spawnLaserFlag = true
             }
             else
             {
-                
-                
                 
                 let when = DispatchTime.now() + 2 // change 2 to desired number of seconds
                
@@ -360,27 +394,22 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
                     let gameOverScene = GameOverScene(size: self.size)
                     self.view?.presentScene(gameOverScene, transition : .doorway(withDuration: 1))
                 }
-                
-                
             }
-
-            
-            
-            
-           
-            
-           
         }
         else if BodyA.categoryBitMask & laserCategory != 0 && (BodyB.categoryBitMask & bombCategory != 0){//PLAYER LASER VS ENEMY FIRE
         
+            
             let explosion :SKEmitterNode = SKEmitterNode(fileNamed: "Explosion")!
-            
-            
-            explosion.position = contact.bodyA.node!.position
+            explosion.name = "exe"
+            if BodyB.node != nil
+            {
+                explosion.position = BodyB.node!.position
+                self.addChild(explosion)
+            }
             if soundFlag{
                 self.run(SKAction.playSoundFileNamed("explosion", waitForCompletion: false))
             }
-            self.addChild(explosion)
+            
             //spawnLaserFlag = false
             contact.bodyA.node?.removeFromParent()
             
@@ -389,7 +418,11 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         
         }
         else if BodyA.categoryBitMask & playerCategory != 0 && (BodyB.categoryBitMask & itemCategory != 0 ) {//PLAYER LASER COLLECTING POWER UP
-            contact.bodyB.node?.removeFromParent()
+            BodyB.node?.removeFromParent()
+            var num : Int = Int(arc4random_uniform(3))
+            num += 1
+            print(num)
+            self.power(num: num)
         }
         else if BodyA.categoryBitMask & laserCategory != 0 && (BodyB.categoryBitMask & enemyCategory != 0){//Enemy vs player
             var lifeLeft = enemy.userData?["life"]! as! Int
@@ -409,6 +442,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
                 
                 let explosion :SKEmitterNode = SKEmitterNode(fileNamed: "Explosion")!
                 explosion.position = contact.bodyA.node!.position
+                explosion.name = "exe"
                 if soundFlag{
                     self.run(SKAction.playSoundFileNamed("explosion", waitForCompletion: false))
                 }
@@ -465,12 +499,12 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
             self.addBomb()
         }
         
-        if currentTime - self.lastItemAdded > 30{
+        if currentTime - self.lastItemAdded > 10{
             self.lastItemAdded = currentTime + 1
             self.addItem()
         }
         
-        if currentTime - self.lastEnemyAdded > 20 && !self.isEnemyAdded
+        if currentTime - self.lastEnemyAdded > 15 && !self.isEnemyAdded
         {
             self.isEnemyAdded = true
             self.lastEnemyAdded = currentTime + 1
@@ -496,8 +530,18 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         }
         
         // spawnLaser(30)
-        spawnLaser(0)
+        //spawnLaser(0)
         
+        switch powerUp {
+        case 1:
+            spawnLaser(30)
+            spawnLaser(-30)
+            spawnLaser(0)
+            break
+            
+        default:
+            spawnLaser(0)
+        }
         //spawnEnemyLaser()
         
         timeSinceFire = 0
