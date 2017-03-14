@@ -28,15 +28,15 @@
 		C32235E51E6E635700B3F0BB /* player_frame2.png in Resources */ = {isa = PBXBuildFile; fileRef = C32235DB1E6E635700B3F0BB /* player_frame2.png */; };
 		C32235E61E6E635700B3F0BB /* player_frame3.png in Resources */ = {isa = PBXBuildFile; fileRef = C32235DC1E6E635700B3F0BB /* player_frame3.png */; };
 		C32235E71E6E635700B3F0BB /* player_frame4.png in Resources */ = {isa = PBXBuildFile; fileRef = C32235DD1E6E635700B3F0BB /* player_frame4.png */; };
-		C398E5851E70DCF10037BA3C /* plane8.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E5841E70DCF10037BA3C /* plane8.png */; };
+		C398E5851E70DCF10037BA3C /* enemy3.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E5841E70DCF10037BA3C /* enemy3.png */; };
 		C398E58E1E70DEE60037BA3C /* backgrd1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C398E5861E70DEE60037BA3C /* backgrd1.jpg */; };
 		C398E58F1E70DEE60037BA3C /* enemyShip2.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E5871E70DEE60037BA3C /* enemyShip2.png */; };
 		C398E5901E70DEE60037BA3C /* enemyShip1.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E5881E70DEE60037BA3C /* enemyShip1.png */; };
 		C398E5911E70DEE60037BA3C /* plane2.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E5891E70DEE60037BA3C /* plane2.png */; };
 		C398E5921E70DEE60037BA3C /* plane3.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E58A1E70DEE60037BA3C /* plane3.png */; };
 		C398E5931E70DEE60037BA3C /* plane4.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E58B1E70DEE60037BA3C /* plane4.png */; };
-		C398E5941E70DEE60037BA3C /* plane5.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E58C1E70DEE60037BA3C /* plane5.png */; };
-		C398E5951E70DEE60037BA3C /* plane6.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E58D1E70DEE60037BA3C /* plane6.png */; };
+		C398E5941E70DEE60037BA3C /* enemy1.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E58C1E70DEE60037BA3C /* enemy1.png */; };
+		C398E5951E70DEE60037BA3C /* enemy2.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E58D1E70DEE60037BA3C /* enemy2.png */; };
 		C398E59D1E70E0630037BA3C /* GameStartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C398E59C1E70E0630037BA3C /* GameStartScene.swift */; };
 		C398E59F1E70FE070037BA3C /* missile1.png in Resources */ = {isa = PBXBuildFile; fileRef = C398E59E1E70FE070037BA3C /* missile1.png */; };
 /* End PBXBuildFile section */
@@ -65,15 +65,15 @@
 		C32235DB1E6E635700B3F0BB /* player_frame2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_frame2.png; sourceTree = "<group>"; };
 		C32235DC1E6E635700B3F0BB /* player_frame3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_frame3.png; sourceTree = "<group>"; };
 		C32235DD1E6E635700B3F0BB /* player_frame4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_frame4.png; sourceTree = "<group>"; };
-		C398E5841E70DCF10037BA3C /* plane8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane8.png; sourceTree = "<group>"; };
+		C398E5841E70DCF10037BA3C /* enemy3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy3.png; sourceTree = "<group>"; };
 		C398E5861E70DEE60037BA3C /* backgrd1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = backgrd1.jpg; sourceTree = "<group>"; };
 		C398E5871E70DEE60037BA3C /* enemyShip2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemyShip2.png; sourceTree = "<group>"; };
 		C398E5881E70DEE60037BA3C /* enemyShip1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemyShip1.png; sourceTree = "<group>"; };
 		C398E5891E70DEE60037BA3C /* plane2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane2.png; sourceTree = "<group>"; };
 		C398E58A1E70DEE60037BA3C /* plane3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane3.png; sourceTree = "<group>"; };
 		C398E58B1E70DEE60037BA3C /* plane4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane4.png; sourceTree = "<group>"; };
-		C398E58C1E70DEE60037BA3C /* plane5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane5.png; sourceTree = "<group>"; };
-		C398E58D1E70DEE60037BA3C /* plane6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane6.png; sourceTree = "<group>"; };
+		C398E58C1E70DEE60037BA3C /* enemy1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy1.png; sourceTree = "<group>"; };
+		C398E58D1E70DEE60037BA3C /* enemy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy2.png; sourceTree = "<group>"; };
 		C398E59C1E70E0630037BA3C /* GameStartScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameStartScene.swift; sourceTree = "<group>"; };
 		C398E59E1E70FE070037BA3C /* missile1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -144,9 +144,9 @@
 				C32235DB1E6E635700B3F0BB /* player_frame2.png */,
 				C32235DC1E6E635700B3F0BB /* player_frame3.png */,
 				C32235DD1E6E635700B3F0BB /* player_frame4.png */,
-				C398E58C1E70DEE60037BA3C /* plane5.png */,
-				C398E58D1E70DEE60037BA3C /* plane6.png */,
-				C398E5841E70DCF10037BA3C /* plane8.png */,
+				C398E58C1E70DEE60037BA3C /* enemy1.png */,
+				C398E58D1E70DEE60037BA3C /* enemy2.png */,
+				C398E5841E70DCF10037BA3C /* enemy3.png */,
 			);
 			name = image;
 			sourceTree = "<group>";
@@ -233,14 +233,14 @@
 				C398E58E1E70DEE60037BA3C /* backgrd1.jpg in Resources */,
 				C398E5921E70DEE60037BA3C /* plane3.png in Resources */,
 				C398E5901E70DEE60037BA3C /* enemyShip1.png in Resources */,
-				C398E5851E70DCF10037BA3C /* plane8.png in Resources */,
-				C398E5941E70DEE60037BA3C /* plane5.png in Resources */,
+				C398E5851E70DCF10037BA3C /* enemy3.png in Resources */,
+				C398E5941E70DEE60037BA3C /* enemy1.png in Resources */,
 				C32235C41E6D50CF00B3F0BB /* Assets.xcassets in Resources */,
 				C32235C71E6D50CF00B3F0BB /* LaunchScreen.storyboard in Resources */,
 				C32235BB1E6D50CF00B3F0BB /* Actions.sks in Resources */,
 				C32235E51E6E635700B3F0BB /* player_frame2.png in Resources */,
 				C32235D31E6E61BB00B3F0BB /* Explosion.sks in Resources */,
-				C398E5951E70DEE60037BA3C /* plane6.png in Resources */,
+				C398E5951E70DEE60037BA3C /* enemy2.png in Resources */,
 				C32235E11E6E635700B3F0BB /* particle.png in Resources */,
 				C32235D11E6E5CCD00B3F0BB /* laser.sks in Resources */,
 				C32235E61E6E635700B3F0BB /* player_frame3.png in Resources */,

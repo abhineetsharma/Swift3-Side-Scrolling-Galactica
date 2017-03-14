@@ -48,11 +48,12 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
     var isEnemyAdded:Bool = false
     var GameLoadFlag:Bool = true
     var soundFlag : Bool = false
+    var powerGiven:Bool = true
     
     var powerUp:Int = 0
     var score: Int = 0
     var enemyLife : Int = 40
-    
+   
     
     override func didMove(to view: SKView) {
         GameLoadFlag = true
@@ -107,6 +108,23 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
             break
         case 4:
             fireRate = 0.8
+            break
+        case 5:
+            self.enumerateChildNodes(withName: "bomb", using: {(node,stop)-> Void in
+                if let item = node as? SKSpriteNode{
+                    
+                        item.removeFromParent()
+                    
+                }
+            })
+            self.enumerateChildNodes(withName: "missile", using: {(node,stop)-> Void in
+                if let item = node as? SKSpriteNode{
+                    
+                    item.removeFromParent()
+                    
+                }
+            })
+
             break
             
         default:
@@ -164,8 +182,7 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         ship = SKSpriteNode(imageNamed: "Spaceship")
         ship.setScale(0.25)
         ship.zRotation = CGFloat(-M_PI/2)
-        let shipTexture = SKTexture(imageNamed: "SpaceShip")
-        ship.physicsBody = SKPhysicsBody(texture: shipTexture, size: ship.size)//SKPhysicsBody(rectangleOf: ship.size)
+        ship.physicsBody = SKPhysicsBody(rectangleOf: ship.size)
         ship.physicsBody?.isDynamic = true
         ship.name = "ship"
         ship.physicsBody?.categoryBitMask = UInt32(playerCategory)
@@ -247,12 +264,15 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
     }
     
     func addEnemy(){
+        let name:String = "enemy" + String(Int(arc4random_uniform(3)) + 1)
+        print(name)
         isEnemyAdded = true;
-        enemy = SKSpriteNode(imageNamed: "rocket")
-        enemy.setScale(0.2)
+        enemy = SKSpriteNode(imageNamed: name )
+        //enemy.setScale(0.2)
+        enemy.size = CGSize(width: self.size.height/2, height: self.size.width/3)
         enemy.zRotation = CGFloat(M_PI/2)
-        let EnemyTexture = SKTexture(imageNamed: "Enemy")
-        enemy.physicsBody = SKPhysicsBody(texture: EnemyTexture, size: enemy.size)//SKPhysicsBody(rectangleOf: ship.size)
+        //let EnemyTexture = SKTexture(imageNamed: "Enemy")
+        enemy.physicsBody = SKPhysicsBody(rectangleOf: ship.size)
         enemy.physicsBody?.isDynamic = true
         enemy.name = "Enemy"
         enemy.physicsBody?.categoryBitMask = UInt32(enemyCategory)
@@ -393,6 +413,8 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
                 self.powerUp = 4
                 self.power(num: 4)
                 
+               
+                
             }
             else
             {
@@ -439,10 +461,18 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
         }
         else if BodyA.categoryBitMask & playerCategory != 0 && (BodyB.categoryBitMask & itemCategory != 0 ) {//PLAYER LASER COLLECTING POWER UP
             BodyB.node?.removeFromParent()
-            var num : Int = Int(arc4random_uniform(3))
+            var num : Int = Int(arc4random_uniform(5))
             num += 1
-            print(num)
-            self.power(num: num)
+            if powerGiven{
+                print(num)
+                self.power(num: num)
+                self.powerGiven = false
+            }
+            let when = DispatchTime.now() + 2
+            DispatchQueue.main.asyncAfter(deadline: when) {
+               self.powerGiven = true
+            }
+            
         }
         else if BodyA.categoryBitMask & laserCategory != 0 && (BodyB.categoryBitMask & enemyCategory != 0){//Enemy vs player
             var lifeLeft = enemy.userData?["life"]! as! Int
@@ -521,12 +551,12 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
             self.addBomb()
         }
         
-        if currentTime - self.lastItemAdded > 10{
+        if currentTime - self.lastItemAdded > 8{
             self.lastItemAdded = currentTime + 1
             self.addItem()
         }
         
-        if currentTime - self.lastEnemyAdded > 15 && !self.isEnemyAdded
+        if currentTime - self.lastEnemyAdded > 12 && !self.isEnemyAdded
         {
             self.isEnemyAdded = true
             self.lastEnemyAdded = currentTime + 1
