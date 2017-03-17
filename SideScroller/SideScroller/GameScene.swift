@@ -47,12 +47,12 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
     var spawnLaserFlag:Bool = true
     var isEnemyAdded:Bool = false
     var GameLoadFlag:Bool = true
-    var soundFlag : Bool = false
+    var soundFlag : Bool = true
     var powerGiven:Bool = true
     
     var powerUp:Int = 0
     var score: Int = 0
-    var enemyLife : Int = 40
+    var enemyLife : Int = 20
    
     
     override func didMove(to view: SKView) {
@@ -131,6 +131,10 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
             spawnLaser(0)
             break;
         }
+    
+    }
+    func updateScore(num : Int)
+    {
     
     }
     
@@ -561,12 +565,14 @@ class GameScene: SKScene ,SKPhysicsContactDelegate{
             self.isEnemyAdded = true
             self.lastEnemyAdded = currentTime + 1
             
+            
+            
+            self.addEnemy()
             backgroundVelocity += 1.0
             bombVelocity += 1.0
             itemVelocity += 1.0
             self.enemyLife *= 2
-            
-            self.addEnemy()
+
         }
         if(self.isEnemyAdded){
             if currentTime - self.lastItemAdded > 1
