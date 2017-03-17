@@ -4,26 +4,12 @@ This README would normally document whatever steps are necessary to get your app
 
 ### What is this repository for? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* it's a side scroller game with a ship shooting down enemy's ships , big bad and it's bombs
 
 ### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+* Start playing game and shoot down enemys
+* Remeber to collect power ups, you may get either life or more laser to fire, or increase your fire rate or destroy all enemy at once on screen except the big bad.
+* If you die your power ups will be reset to basics.
+* If you die with no life left game is over.
+* After killing the big bad prepare for increase in difficulty in the game
